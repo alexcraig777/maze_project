@@ -1,3 +1,5 @@
+import sys
+
 import pygame
 
 import maze_generation
@@ -32,6 +34,10 @@ while True:
                 pass
             ### Finish the rest of the arrow key options.
             ### YOUR CODE HERE
+
+        ### Try to exit as nicely as possible.
+        if event.type == pygame.QUIT:
+            sys.exit()
 
     ### Check if we've caught the goal.
     ### YOUR CODE HERE
