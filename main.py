@@ -8,16 +8,18 @@ from maze import Maze
 height = 50
 width = 50
 
-pygame.init()
-window = pygame.display.set_mode([width*20, height*20])
-clock = pygame.time.Clock()
-
 grid = maze_generation.gen_grid(height, width)
 maze = Maze(height, width, grid)
 
+### pygame initialization stuff.
+pygame.init()
+window = pygame.display.set_mode([width * maze.cell_size,
+                                  height * maze.cell_size])
+clock = pygame.time.Clock()
+
+### Draw stuff for quick gratification:
 maze.draw(window)
 pygame.display.flip()
-
 
 while True:
     ### Limit the loop to going 10 times per second.
