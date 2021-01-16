@@ -1,8 +1,5 @@
 import random
 
-import numpy as np
-import matplotlib.pyplot as plt
-
 class MazeNode:
     def __init__(self, x, y):
         self.x = x
@@ -118,7 +115,6 @@ def gen_grid(height, width, strategy = 'random_leaf'):
             if not node_grid[i][j].visited:
                 grid[i][j] = 1
 
-    print(np.array(grid))
     return grid
 
 if __name__ == '__main__':

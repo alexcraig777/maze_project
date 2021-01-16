@@ -3,12 +3,13 @@ import pygame
 import maze_generation
 from maze import Maze
 
-pygame.init()
-window = pygame.display.set_mode([100, 100])
-clock = pygame.clock.Clock()
+height = 50
+width = 50
 
-height = 10
-width = 10
+pygame.init()
+window = pygame.display.set_mode([width*20, height*20])
+clock = pygame.time.Clock()
+
 grid = maze_generation.gen_grid(height, width)
 maze = Maze(height, width, grid)
 
