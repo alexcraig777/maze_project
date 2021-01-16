@@ -1,3 +1,5 @@
+import pygame
+
 white = [255, 255, 255]
 black = [0, 0, 0]
 
@@ -6,6 +8,8 @@ class Maze:
         self.height = height
         self.width = width
         self.grid = grid
+
+        self.cell_size = 20
 
         ### You may want to add more attributes (or not)
         ### YOUR CODE HERE
@@ -17,8 +21,6 @@ class Maze:
                     draw_color = white
                 else:
                     draw_color = black
-
-                ### YOUR CODE HERE
-                ### Hint: you can do it in one line . . .
-                ### Hint: to draw a rectangle, the command is:
-                ### pygame.draw.rect(window, color, (left, right, width, height))
+                pygame.draw.rect(window, draw_color, (value_x * self.cell_size,
+                                                      value_y * self.cell_size,
+                                                      self.cell_size, self.cell_size))

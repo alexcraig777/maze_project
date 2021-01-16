@@ -1,15 +1,20 @@
 import pygame
 
-### What other modules do we need access to?
-### YOUR CODE HERE
+import maze_generation
+from maze import Maze
 
-### Initialize pygame stuff (don't worry too much about this).
 pygame.init()
 window = pygame.display.set_mode([100, 100])
 clock = pygame.clock.Clock()
 
-### Initialize the maze, the person, and the goal objects.
-### YOUR CODE HERE
+height = 10
+width = 10
+grid = maze_generation.gen_grid(height, width)
+maze = Maze(height, width, grid)
+
+maze.draw(window)
+pygame.display.flip()
+
 
 while True:
     ### Limit the loop to going 10 times per second.
