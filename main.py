@@ -4,12 +4,14 @@ import pygame
 
 import maze_generation
 from maze import Maze
+from person import Person
 
-height = 50
-width = 50
+height = 20
+width = 20
 
 grid = maze_generation.gen_grid(height, width)
 maze = Maze(height, width, grid)
+person = Person(0, 0, maze)
 
 ### pygame initialization stuff.
 pygame.init()
@@ -17,25 +19,26 @@ window = pygame.display.set_mode([width * maze.cell_size,
                                   height * maze.cell_size])
 clock = pygame.time.Clock()
 
-### Draw stuff for quick gratification:
-maze.draw(window)
-pygame.display.flip()
-
 while True:
     ### Limit the loop to going 10 times per second.
     clock.tick(10)
-    
+
+    maze.draw(window)
+    person.draw(window)
+
     ### Process all 'events' that pygame has detected since last loop.
     for event in pygame.event.get():
         ### If the event is a key press:
         if event.type == pygame.KEYDOWN:
             ### If the key was the 'down' arrow key:
             if event.key == pygame.K_LEFT:
-                ### What should we do?
-                ### YOUR CODE HERE
-                pass
-            ### Finish the rest of the arrow key options.
-            ### YOUR CODE HERE
+                person.move("left")
+            elif event.key == pygame.K_RIGHT:
+                person.move("right")
+            elif event.key == pygame.K_UP:
+                person.move("up")
+            elif event.key == pygame.K_DOWN:
+                person.move("down")
 
         ### Try to exit as nicely as possible.
         if event.type == pygame.QUIT:

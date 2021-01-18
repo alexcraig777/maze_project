@@ -1,3 +1,7 @@
+import sys
+
+import pygame
+
 class Person:
     def __init__(self, x_value, y_value, maze):
         self.x_value = x_value
@@ -9,27 +13,37 @@ class Person:
             if self.x_value < self.maze.width - 1:
                 if self.maze.grid[self.y_value][self.x_value + 1] == 0:
                     self.x_value += 1
-            else:
-                pass
+            elif self.x_value == self.maze.width - 1:
+                if self.y_value == self.maze.height - 1:
+                    self.x_value += 1
+                    sys.exit()
 
         if direction == "left":
             if self.x_value != 0:
-                if self.maze.grid[self.y_value][self.x_value + 1] == 0:
+                if self.maze.grid[self.y_value][self.x_value - 1] == 0:
                     self.x_value -= 1
             else:
                 pass
 
-        if direction == "":
-            if self.x_value <= self.maze.width - 1:
-                if self.maze.grid[self.y_value][self.x_value + 1] == 0:
-                    self.x_value += 1
+        if direction == "up":
+            if self.y_value > 0:
+                if self.maze.grid[self.y_value - 1][self.x_value] == 0:
+                    self.y_value -= 1
             else:
                 pass
-        ### What action do we need to do based on the direction?
-        ### YOUR CODE HERE
-        pass
+
+        if direction == "down":
+            if self.y_value < self.maze.height - 1:
+                if self.maze.grid[self.y_value + 1][self.x_value] == 0:
+                    self.y_value += 1
+            elif self.x_value == self.maze.width - 1:
+                if self.y_value == self.maze.height - 1:
+                    self.y_value += 1
+                    sys.exit()
+            else:
+                pass
 
     def draw(self, window):
-        ### How are we going to draw the person?
-        ### YOUR CODE HERE
-        pass
+        x_center = (self.x_value * self.maze.cell_size) + (self.maze.cell_size / 2)
+        y_center = (self.y_value * self.maze.cell_size) + (self. maze.cell_size / 2)
+        pygame.draw.circle(window, (50, 255, 255), (x_center, y_center), self.maze.cell_size / 2)
